@@ -31,7 +31,7 @@ const User = sequelize.define('user', {
 //! No dejamos que se muestre password
 User.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
-    delete values.password;             //! Esto es para que en los controladores  no este muy cargado de lineas¿???
+    delete values.password;   //! Esto es para que en los controladores no este muy cargado de lineas¿???
     // delete values.phone;
     return values;
 }

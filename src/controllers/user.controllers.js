@@ -35,7 +35,7 @@ const update = catchError(async (req, res) => {
 const login = catchError(async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ where: { email: email } })
-    if (!user) return res.sendStatus(201)
+    if (!user) return res.sendStatus(401)   //! Esto lo modifique el S21_2Ma
 
     const isValidPassword = await bcrypt.compare(password, user.password)
     if (!isValidPassword) return res.sendStatus(401)

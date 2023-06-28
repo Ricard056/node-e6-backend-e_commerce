@@ -11,7 +11,6 @@ const user = async() => {
     }
 
     await User.create(userCreate)
-    
 }
 
 module.exports = user
