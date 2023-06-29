@@ -18,14 +18,11 @@ beforeAll(async () => {
     TOKEN = res.body.token
 })
 
-
 test("GET -> 'URL_BASE', should return status code 200 and res.body to have length 1", async () => {
     const res = await request(app)
         .get(BASE_URL)
         .set('Authorization', `Bearer ${TOKEN}`)
-    console.log(TOKEN)
-
-    userId
+    //console.log(TOKEN)
 
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
@@ -91,8 +88,8 @@ test("POST -> 'URL/login', should return status code 401", async() => {
         .post(`${BASE_URL}/login`)
         .send(userLogin)
 
-    expect(res.status).toBe(401)    //! Esto debe saler si falla algo en las credenciales
-    // expect(res.body.token).toBeUndefined()   // Esto fue extra mio
+    expect(res.status).toBe(401)    //! Esto sale si falla algo en las credenciales
+    expect(res.body.token).toBeUndefined()   //! Esto fue extra mio
 })
 
 test("DELETE -> 'BASE_URL/:id', should return status code 204", async () => {
