@@ -26,7 +26,7 @@ test("POST -> 'BASE_URL_PRODUCTS', should return status code 201 & res.body.titl
     const categoryBody = {
         name: "Tech"
     }                                               //! No lo destruire en el mismo Scope
-    category = await Category.create(categoryBody)  //! Estudiar esto zzzzzzzz
+    category = await Category.create(categoryBody)  //! En el filtro la usare
 
     const product = {
         title: "xiaomi 12",
@@ -42,20 +42,32 @@ test("POST -> 'BASE_URL_PRODUCTS', should return status code 201 & res.body.titl
 
     productId = res.body.id     //!
 
-    expect(res.status).toBe(201)                //! Es por el .controller
-    expect(res.body.title).toBe(product.title)
+    expect(res.status).toBe(201) 
+    expect(res.body.title).toBe(product.title) 
 })
 
-test("GET -> 'BASE_URL_PRODUCTS', should return status code 200 & res.body.length === 1", async () => {
+test("GET -> 'BASE_URL_PRODUCTS', should return status code 200 & res.body.length === 1 & res.body[0] to be defined", async () => {
     const res = await request(app)
         .get(BASE_URL_PRODUCTS)
+        //console.log(res.body) //confirmo que me trae todos los productos (en post seria bueno crear 2 productos con diferentes categorias)
 
     expect(res.status).toBe(200)
     expect(res.body).toHaveLength(1)
-    expect(res.body[0]).toBeDefined()       //! ESTUDIAR ESTO
+    expect(res.body[0]).toBeDefined()
 })
 
-test("GET ONE -> 'BASE_URL_PRODUCTS/:id', should return status code 200 & res.body.length === 1", async () => {
+//! Filtro de "product" con alguna "categoria"
+test("GET -> 'BASE_URL_PRODUCTS?category = category.id', should return status code 200 & res.body.length === 1", async () => {
+    const res = await request(app)
+        .get(`${BASE_URL_PRODUCTS}?category=${category.id}`)
+    // console.log(res.body)   //confirmo que el product, si tiene la categoria especificada
+
+    expect(res.status).toBe(200)
+    expect(res.body).toHaveLength(1)
+    expect(res.body[0]).toBeDefined()
+})
+
+test("GET ONE -> 'BASE_URL_PRODUCTS/:id', should return status code 200 & res.body.title === xiaomi 12", async () => {
     const res = await request(app)
         .get(`${BASE_URL_PRODUCTS}/${productId}`)
 
