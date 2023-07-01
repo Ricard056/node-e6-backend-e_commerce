@@ -8,7 +8,7 @@ const getAll = catchError(async(req, res) => {
     if(category) where.categoryId = category        //!
     const results = await Product.findAll({
         include:[Category],
-        where           //! Si category no existe, esto es: where:{}
+        where // {} || {categoryId:'3'} //! Si category no existe, es: where:{}
     }); 
     return res.json(results);
 });
