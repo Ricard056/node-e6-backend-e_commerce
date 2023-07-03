@@ -1,7 +1,8 @@
 # MODELOS Y ENDPOINTS:
 La marca "✅" indica que fue testeado el Endpoint
-ENTREGA  - test() 21/21     //En login hice 2 test()
-OPCIONAL - test() 3/3 
+- ENTREGA  - test() 21/21     //En login hice 2 test()
+- OPCIONAL - test() 3/3 
+
 - Users ------------------------------------------
   - Fields
     - firstName
