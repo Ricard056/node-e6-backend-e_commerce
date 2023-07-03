@@ -41,7 +41,7 @@ test("POST -> 'URL_BASE_CART', should return status code 201 & res.body.quantity
     const res = await request(app)
         .post(URL_BASE_CART)
         .send(cartBody)
-        .set("Authorization", `Bearer ${TOKEN}`)    //Es privado la ruta
+        .set("Authorization", `Bearer ${TOKEN}`)
     cartId = res.body.id    //!
 
     expect(res.status).toBe(201)
@@ -65,7 +65,7 @@ test("PUT -> 'URL_BASE_CART/:id', should return status code 200 & res.body.quant
     const res = await request(app)
         .put(`${URL_BASE_CART}/${cartId}`)
         .send(cartBody)
-        .set("Authorization", `Bearer ${TOKEN}`)    //Es privado la ruta
+        .set("Authorization", `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(200)
     expect(res.body.quantity).toBe(cartBody.quantity)
@@ -74,7 +74,7 @@ test("PUT -> 'URL_BASE_CART/:id', should return status code 200 & res.body.quant
 test("DELETE -> 'URL_BASE_CART/:id', should return status code 204", async() => {   
     const res = await request(app)
         .delete(`${URL_BASE_CART}/${cartId}`)
-        .set("Authorization", `Bearer ${TOKEN}`)    //Es privado la ruta
+        .set("Authorization", `Bearer ${TOKEN}`)
 
     expect(res.status).toBe(204)
 

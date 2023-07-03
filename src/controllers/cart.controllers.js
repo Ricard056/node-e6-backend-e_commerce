@@ -22,14 +22,14 @@ const create = catchError(async(req, res) => {
 
 const remove = catchError(async(req, res) => {  
     const { id } = req.params;
-    const userId = req.user.id  //!
-    const result = await Cart.destroy({     //!
+    const userId = req.user.id          //!
+    const result = await Cart.destroy({ //!
         where: {
             id,
             userId
         } 
     });
-    //console.log(result)     //! 10 35 - 10 37
+    //console.log(result)               //! 10 35 - 10 37
     if(!result) res.sendStatus(404)     //!
 
     return res.sendStatus(204);

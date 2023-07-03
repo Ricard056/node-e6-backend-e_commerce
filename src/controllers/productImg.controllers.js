@@ -1,6 +1,6 @@
 const catchError = require('../utils/catchError');
-const fs = require('fs');                           //! remove
-const path = require('path');                       //! remove
+const fs = require('fs');                           // para el "remove"
+const path = require('path');                       // para el "remove"
 const ProductImg = require('../models/ProductImg');
 
 
@@ -11,7 +11,7 @@ const getAll = catchError(async (req, res) => {
 
 const create = catchError(async (req, res) => {
     const url = req.protocol + "://" + req.headers.host + "/uploads/" + req.file.filename;
-    const filename = req.file.filename;     //! HERE ??
+    const filename = req.file.filename;
     const result = await ProductImg.create({ url, filename });
     return res.status(201).json(result);
 });
